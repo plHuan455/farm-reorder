@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build --mode staging",
     "build-pro": "tsc -b && vite build --mode staging",
     "lint": "eslint .",
-    "docker:build": "docker build --platform linux/amd64 -t farmgame .",
-    "docker:built": "docker build --platform linux/amd64 -f Dockerfile2 -t farmgame .",
+    "docker:build": "docker build --platform linux/amd64 -t pro-farmgame .",
+    "docker:built": "docker build --platform linux/amd64 -f Dockerfile2 -t pro-farmgame .",
     "preview": "vite preview"
   },
   "dependencies": {

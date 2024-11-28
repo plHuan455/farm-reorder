@@ -5,9 +5,9 @@ import Typography from "@/components/atoms/Typography";
 import { useAuth } from "@/libs/auth/Provider";
 import { cn } from "@/utils/className";
 import queryString from 'query-string'
-import WebApp from "@twa-dev/sdk";
 import ENVS from "@/constants/envs";
 import { copyClipboard } from "@/utils/common";
+import WebApp from "@twa-dev/sdk";
 
 export default function Claim() {
   const auth = useAuth()
@@ -19,7 +19,7 @@ export default function Claim() {
       <Typography className="mt-4 text-[1.5rem] leading-7 font-bold">You are amazing!</Typography>
       <Typography className="mt-2 text-[1rem] leading-7 text-black/80">{isCanGetTon ? "Congrats, you’ve earned $TON for the first members": <span>Congrats on registering for position {order}/3000</span>}</Typography>
       <Flex className="mt-8 flex-col items-center gap-4">
-         <Image src="/images/ton.svg" alt="ton" className="w-[4.4375rem] aspect-square" />
+         <Image src="/images/ton.svg" className="w-[4.4375rem] aspect-square" />
          <Typography font={'bigNumber'} className={cn("text-center font-semibold text-[2.625rem]", !isCanGetTon && "text-[#CCCCCC] line-through")}>
           <span className={cn(!isCanGetTon && "text-[#CCCCCC]")}>{isCanGetTon ? 1 : 3000}</span><span className={cn("text-[#0088CC]", !isCanGetTon && "text-[#CCCCCC]")}>TON</span>
          </Typography>
@@ -59,6 +59,7 @@ export default function Claim() {
                 text: `Pre-register now to get your first-come-first-served bonus, and share your referral code with your friends now.`,
               },
             })
+            console.log("🚀 ~ Claim ~ url:", url)
             WebApp.openTelegramLink(url)
           }}
         >
