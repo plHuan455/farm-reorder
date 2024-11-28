@@ -10,19 +10,8 @@ export const typographyVariants = tv(
         content: 'font-content',
         bigNumber: 'font-bigNumber font-bold'
       },
-      size: {
-        "2xl": "text-[2.5rem] leading-[3rem]",
-        titleXl: "text-[1.5rem] leading-[1.75rem] font-bold", // 24
-        titleLg: "text-[1.125rem] leading-[1.5rem] font-bold", // 24
-        titleMd: "text-[1rem] leading-[1.25rem] font-bold",  // 16
-        titleSm: "text-[0.75rem] leading-[1rem] font-semibold",
-        lg: "text-[1.125rem] leading-[1.5rem]",  // 18
-        md: 'text-[14px] leading-[16px]',
-        sm: 'text-[0.75rem] leading-[0.875rem]'  // 12
-      },
     },
     defaultVariants: {
-      size: 'md',
       font: "content",
     },
   },
@@ -42,10 +31,10 @@ export interface TypographyProps extends VariantProps<typeof typographyVariants>
 }
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ as = "p", font, size, children, className, ...props }, ref) => {
+  ({ as = "p", font, children, className, ...props }, ref) => {
     const Component = as
     return (
-      <Component className={cn(typographyVariants({ size, font }), className)} {...props} ref={ref}>
+      <Component className={cn(typographyVariants({ font }), className)} {...props} ref={ref}>
         {children}
       </Component>
     )

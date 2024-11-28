@@ -9,6 +9,7 @@ import { LOCAL_STORAGE } from "@/constants/storage"
 import Flex from "@/components/atoms/Flex"
 import Typography from "@/components/atoms/Typography"
 import { joinClanService } from "@/services/clan"
+import { submitReferralService } from "@/services/referral"
 
 
 interface Props {
@@ -36,6 +37,11 @@ export default function AuthProvider({ }: Props) {
   const [auth, setAuth] = useState<IAuthData>(initialAuthData)
   const [searchParams] = useSearchParams() 
 
+  const {mutate: submitReferralMutate} = useMutation({
+    mutationKey: [QUERY_KEYS.USER.submitRef],
+    mutationFn: submitReferralService
+  })
+
   const { mutate: getMeMutate } = useMutation({
     mutationKey: [QUERY_KEYS.AUTH.me],
     mutationFn: getMeService,
@@ -47,11 +53,14 @@ export default function AuthProvider({ }: Props) {
       })
       const startParams = searchParams.get('start')?.split('_')
       const clanId = startParams?.at(2)
-
+      const referral = startParams?.at(1)
 
       /** HANDLE NÊU CÓ ID RỒI THÌ KHỎI GỌI JOIN */
       if(clanId && !data.userInfo.clan_id) {
         clanId && joinClanMutate({clanId})
+      }
+      if(referral && !data.userInfo.referral_by) {
+        submitReferralMutate({ref_code: referral})
       }
     },
     onError() {
@@ -68,9 +77,14 @@ export default function AuthProvider({ }: Props) {
     onSuccess(data) {
       localStorage.setItem(LOCAL_STORAGE.accessToken, data.userInfo.access_token)
       
-      const clanId = WebApp.initDataUnsafe.start_param?.split('_')?.at(2)
+      const params = WebApp.initDataUnsafe.start_param?.split('_')
+      const clanId = params?.at(2)
+      const referral = params?.at(1)
       if(clanId && !data.userInfo.clan_id) {
         joinClanMutate({clanId})
+      }
+      if(referral) {
+        submitReferralMutate({ref_code: referral})
       }
       setAuth({
         isLoading: false,
@@ -127,7 +141,7 @@ export default function AuthProvider({ }: Props) {
   return (
     <AuthContext.Provider value={value}>
       {auth.isLoading ? <Flex className="w-full h-screen" center>
-        <Typography size={'titleMd'}>Loading ...</Typography>
+        <Typography className="font-semibold">Loading ...</Typography>
       </Flex> : <Outlet />}
 
     </AuthContext.Provider>

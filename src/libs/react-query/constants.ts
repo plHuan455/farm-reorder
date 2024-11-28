@@ -15,6 +15,10 @@ const QUERY_KEYS = {
   },
   SHOP: {
     products: 'shop-products'
+  },
+  USER: {
+    submitRef: "user-submit-ref",
+    reorder: "user-reorder"
   }
 }
 

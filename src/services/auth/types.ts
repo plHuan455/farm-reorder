@@ -4,6 +4,7 @@ export interface IUserInfo {
     username: string
     level: number
     id_token: string
+    referral_by: string
     avatar: string
     access_token: string
     ton_deposit: number
@@ -12,6 +13,8 @@ export interface IUserInfo {
     energy: number
     coin: number
     clan_id: number
+    order: number
+    created_at: string
 }
 
 export interface SignInParams {

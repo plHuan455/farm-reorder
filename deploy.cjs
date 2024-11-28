@@ -1,7 +1,7 @@
 /** eslint-disable ts-ignore */
 
-const DOCKER_IMAGE = 'farmgame'
-const DOCKER_REMOTE_TAG = 'plhuan/farmgame'
+const DOCKER_IMAGE = 'pro-farmgame'
+const DOCKER_REMOTE_TAG = 'plhuan/pro-farmgame'
 const fs = require("fs")
 const { execSync } = require("child_process")
 

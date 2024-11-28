@@ -1,7 +1,8 @@
 const ENVS = {
   DOMAIN: import.meta.env.VITE_DOMAIN,
   API_DOMAIN: import.meta.env.VITE_API_DOMAIN,
-  TOKEN: 'TFC'
+  TOKEN: 'TFC',
+  TELEGRAM_APP: import.meta.env.VITE_TELEGRAM_LINK
 }
 
 export default ENVS
