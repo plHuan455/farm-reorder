@@ -1,0 +1,61 @@
+$font-path: "/fonts/";
+
+// Kemco
+@font-face {
+  font-display: swap;
+  font-family: "Kemco pixel";
+  font-style: normal;
+  font-weight: 700;
+  src: url("#{$font-path}KemcoPixel-Bold.ttf") format("truetype");
+}
+
+// Sofia
+@font-face {
+  font-display: swap;
+  font-family: "Sofia";
+  font-style: normal;
+  font-weight: 700;
+  src: url("#{$font-path}SofiaSans.ttf") format("truetype");
+}
+
+
+// Share Text Mono
+@font-face {
+  font-display: swap;
+  font-family: "Share Tech Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("#{$font-path}ShareTechMono-Regular.ttf") format("truetype");
+}
+
+
+// Martian Mono
+@font-face {
+  font-display: swap;
+  font-family: "Martian Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("#{$font-path}MartianMono.ttf") format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Martian Mono";
+  font-style: normal;
+  font-weight: 500;
+  src: url("#{$font-path}MartianMono.ttf") format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Martian Mono";
+  font-style: normal;
+  font-weight: 600;
+  src: url("#{$font-path}MartianMono.ttf") format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Martian Mono";
+  font-style: normal;
+  font-weight: 700;
+  src: url("#{$font-path}MartianMono.ttf") format("truetype");
+}
+
