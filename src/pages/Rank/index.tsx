@@ -21,7 +21,7 @@ export default function Rank() {
     <Flex className="h-full container pt-[3vh] flex-col relative">
       <div className="absolute">
         <NavLink to={generateClaimUrl()}>
-          <Button isIconOnly className="w-11 text-black border border-black"  >
+          <Button isIconOnly className="w-11 text-black border border-black hover:bg-black/10"  >
             <IconBack className="text-[1.225em]" />
           </Button>
         </NavLink>

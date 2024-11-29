@@ -4,7 +4,7 @@ import { type VariantProps, tv } from "tailwind-variants"
 
 export const buttonBaseVariants = tv(
   {
-    base: "a-button flex justify-center items-center rounded-xl",
+    base: "a-button flex justify-center items-center rounded-xl duration-300 active:scale-[0.96]",
     variants: {
       size: {
         xl: "h-14 gap-3.5",
@@ -12,7 +12,7 @@ export const buttonBaseVariants = tv(
         md: 'h-8 text-[0.75rem] leading-[0.875rem] px-5 font-semibold'
       },
       color: {
-        secondary: "bg-secondary text-white px-5",
+        secondary: "bg-secondary text-white px-5 hover:bg-secondary/80",
         black30: "bg-black/30 text-black",
       },
       isIconOnly: {

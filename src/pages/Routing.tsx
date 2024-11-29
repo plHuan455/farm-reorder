@@ -6,6 +6,7 @@ import Claim from "./Claim"
 import { generateClaimUrl } from "./Claim/common"
 import { generateRankUrl } from "./Rank/common"
 import Rank from "./Rank"
+import Error from "./Error"
 
 export default function Routing() {
   const router = createBrowserRouter([
@@ -18,6 +19,7 @@ export default function Routing() {
             {path: '/', element: <Home />},
             {path: generateRankUrl(), element: <Rank />},
             {path: generateClaimUrl(), element: <Claim />},
+            {path: '/error', element: <Error />},
           ]
         }
       ]

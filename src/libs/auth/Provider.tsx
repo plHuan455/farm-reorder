@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react"
-import { Outlet, useSearchParams } from "react-router-dom"
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom"
 import WebApp from "@twa-dev/sdk"
 import { useMutation } from "react-query"
 import QUERY_KEYS from "../react-query/constants"
@@ -34,6 +34,7 @@ const initialAuthData: IAuthData = {
 const AuthContext = createContext<IAuthContext>(initialAuthData)
 
 export default function AuthProvider({ }: Props) {
+  const navigate = useNavigate()
   const [auth, setAuth] = useState<IAuthData>(initialAuthData)
   const [searchParams] = useSearchParams() 
 
@@ -83,7 +84,7 @@ export default function AuthProvider({ }: Props) {
       if(clanId && !data.userInfo.clan_id) {
         joinClanMutate({clanId})
       }
-      if(referral) {
+      if(referral && !data.userInfo.referral_by) {
         submitReferralMutate({ref_code: referral})
       }
       setAuth({
@@ -99,6 +100,7 @@ export default function AuthProvider({ }: Props) {
         isLoading: false,
         userInfo: undefined
       })
+      navigate('/error')
     }
   })
 

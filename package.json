@@ -16,6 +16,7 @@
     "@radix-ui/react-popover": "^1.1.2",
     "@twa-dev/sdk": "^7.10.1",
     "axios": "^1.7.7",
+    "canvas-confetti": "^1.9.2",
     "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.13",
