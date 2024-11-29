@@ -8,6 +8,9 @@ import queryString from 'query-string'
 import ENVS from "@/constants/envs";
 import { copyClipboard } from "@/utils/common";
 import WebApp from "@twa-dev/sdk";
+import IconRank from "@/components/atoms/icons/rank";
+import { NavLink } from "react-router-dom";
+import { generateRankUrl } from "../Rank/common";
 
 export default function Claim() {
   const auth = useAuth()
@@ -46,7 +49,7 @@ export default function Claim() {
       </div>
       </div>
       
-      <div className="pb-5 pt-3 sticky bottom-0 bg-background container">
+      <Flex className="pb-5 pt-3 sticky bottom-0 bg-background container items-center gap-3">
         <Button size="xl" color="secondary" className="w-full"
           onClick={() => {
             const url = queryString.stringifyUrl({
@@ -65,7 +68,12 @@ export default function Claim() {
         >
           Share now
         </Button>
-      </div>
+        <NavLink to={generateRankUrl()}>
+          <Button isIconOnly size="xl" color="secondary" className="bg-transparent border border-black/80 text-black" >
+            <IconRank className="!text-[1.5em]"/>
+          </Button>
+        </NavLink>
+      </Flex>
     </div>
   )
 }

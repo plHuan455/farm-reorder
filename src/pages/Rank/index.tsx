@@ -1,5 +1,7 @@
 import Avatar from "@/components/atoms/Avatar";
+import Button from "@/components/atoms/Button";
 import Flex from "@/components/atoms/Flex";
+import IconBack from "@/components/atoms/icons/back";
 import Image from "@/components/atoms/Image";
 import Typography from "@/components/atoms/Typography";
 import { useAuth } from "@/libs/auth/Provider";
@@ -7,15 +9,25 @@ import QUERY_KEYS from "@/libs/react-query/constants";
 import { listReorderPlayerService } from "@/services/reopen";
 import dayjs from "dayjs";
 import { useQuery } from "react-query";
+import { NavLink } from "react-router-dom";
+import { generateClaimUrl } from "../Claim/common";
+import { formatToken } from "@/utils/number";
 
 export default function Rank() {
   const auth = useAuth()
   const { data } = useQuery({ queryKey: [QUERY_KEYS.USER.reorder], queryFn: () => listReorderPlayerService() })
   return (
-    <Flex className="h-full container pt-[3vh] flex-col">
+    <Flex className="h-full container pt-[3vh] flex-col relative">
+      <div className="absolute">
+        <NavLink to={generateClaimUrl()}>
+          <Button isIconOnly className="w-11 text-black border border-black"  >
+            <IconBack className="text-[1.225em]" />
+          </Button>
+        </NavLink>
+      </div>
       <div>
         <Flex className="flex-col items-center">
-          <Image src="/images/cup.webp" className="w-[109px] shrink-0" />
+          <Image src="/images/cup.webp" className="w-[109px] shrink-0 aspect-[109/115]" />
           <Typography className="text-center font-bold text-[1.5rem] leading-7 mt-3">3000 TON Reward</Typography>
         </Flex>
 
@@ -28,7 +40,7 @@ export default function Rank() {
                   {auth.userInfo?.username}
                 </Typography>
                 <Typography className="text-[0.75rem] leading-4 text-black/70 mt-2">
-                  {dayjs(auth.userInfo?.created_at).format('DD MMM, hh:mm')}
+                  {dayjs(auth.userInfo?.created_at).format('DD MMM, hh:mm A')}
                 </Typography>
               </div>
 
@@ -41,7 +53,7 @@ export default function Rank() {
         <Typography className="text-[1rem] leading-5 font-bold">
           List users
         </Typography>
-        <Typography className="text-[0.75rem] leading-4 text-[#172533CC]">{data?.total_count ?? 0} users</Typography>
+        <Typography className="text-[0.75rem] leading-4 text-[#172533CC]">{formatToken(data?.total_count)} users</Typography>
       </Flex>
       <div className="grow overflow-auto scrollbar pb-5">
         <div>
@@ -55,7 +67,7 @@ export default function Rank() {
                   {value.username}
                 </Typography>
                 <Typography className="text-[0.75rem] leading-4 text-black/70 mt-2">
-                  {dayjs(value.created_at).format('DD MMM, hh:mm')}
+                  {dayjs(value.created_at).format('DD MMM, hh:mm A')}
                 </Typography>
               </div>
 
