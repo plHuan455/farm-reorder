@@ -12,10 +12,11 @@ import { useQuery } from "react-query";
 import { NavLink } from "react-router-dom";
 import { generateClaimUrl } from "../Claim/common";
 import { formatToken } from "@/utils/number";
+import Skeleton from "@/components/atoms/Skeleton";
 
 export default function Rank() {
   const auth = useAuth()
-  const { data } = useQuery({ queryKey: [QUERY_KEYS.USER.reorder], queryFn: () => listReorderPlayerService() })
+  const { data, isLoading } = useQuery({ queryKey: [QUERY_KEYS.USER.reorder], queryFn: () => listReorderPlayerService() })
   return (
     <Flex className="h-full container pt-[3vh] flex-col relative">
       <div className="absolute">
@@ -32,22 +33,22 @@ export default function Rank() {
         </Flex>
 
         <Flex className="mt-7 rounded-lg bg-content p-3.5 gap-2 items-center">
-              <div className="shrink-0">
-                <Avatar src={auth.userInfo?.avatar} className="w-10" />
-              </div>
-              <div className="grow min-w-0">
-                <Typography className="text-[1rem] leading-5 line-clamp-1 text-black font-bold">
-                  {auth.userInfo?.username}
-                </Typography>
-                <Typography className="text-[0.75rem] leading-4 text-black/70 mt-2">
-                  {dayjs(auth.userInfo?.created_at).format('DD MMM, hh:mm A')}
-                </Typography>
-              </div>
+          <div className="shrink-0">
+            <Avatar src={auth.userInfo?.avatar} className="w-10" />
+          </div>
+          <div className="grow min-w-0">
+            <Typography className="text-[1rem] leading-5 line-clamp-1 text-black font-bold">
+              {auth.userInfo?.username}
+            </Typography>
+            <Typography className="text-[0.75rem] leading-4 text-black/70 mt-2">
+              {dayjs(auth.userInfo?.created_at).format('DD MMM, hh:mm A')}
+            </Typography>
+          </div>
 
-              <div>
-                <Typography className="text-[0.875rem] leading-4 font-medium">#{auth.userInfo?.order}</Typography>
-              </div>
-            </Flex>
+          <div>
+            <Typography className="text-[0.875rem] leading-4 font-medium">#{auth.userInfo?.order}</Typography>
+          </div>
+        </Flex>
       </div>
       <Flex className="items-center mt-7 pb-2 justify-between">
         <Typography className="text-[1rem] leading-5 font-bold">
@@ -57,7 +58,10 @@ export default function Rank() {
       </Flex>
       <div className="grow overflow-auto scrollbar pb-5">
         <div>
-          {data?.users.map(value => (<div key={value.safe_id} className="mt-2.5 first:mt-0">
+          {isLoading && Array(4).fill("").map((_, index) => (
+            <div key={index} className="mt-2.5 first:mt-0"><Skeleton className="h-[4.5rem] rounded-lg" /></div>
+          ))}
+          {!isLoading && data?.users.map(value => (<div key={value.safe_id} className="mt-2.5 first:mt-0">
             <Flex className="rounded-lg bg-content2 p-3.5 gap-2 items-center">
               <div className="shrink-0">
                 <Avatar src={value.avatar} className="w-10" />

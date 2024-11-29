@@ -58,6 +58,24 @@ const scrollbarDefaultStyles = {
   },
 }
 
+export const keyframes = {
+  pulse: {
+    "0%": {
+      opacity: 1,
+    },
+    "100%": {
+      opacity: 1,
+    },
+    "50%": {
+      opacity: 0.5,
+    },
+  },
+}
+
+export const animations = {
+  pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+}
+
 export const extraCSSClasses = {
   ...containerSizeStyles,
   ...scrollbarDefaultStyles,

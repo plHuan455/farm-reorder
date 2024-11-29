@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import { withTV } from "tailwind-variants/transformer"
-import { extraCSSClasses } from "./src/libs/tailwindcss/index.ts"
+import { extraCSSClasses, keyframes, animations } from "./src/libs/tailwindcss/index.ts"
 
 export default withTV({
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -39,7 +39,9 @@ export default withTV({
         content2: {
           DEFAULT: "hsl(var(--color-content2))"
         } 
-      }
+      },
+      keyframes: keyframes,
+      animation: animations,
     },
   },
   plugins: [
